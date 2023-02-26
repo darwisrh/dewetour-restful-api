@@ -1,0 +1,83 @@
+USER
+npx sequelize model:generate --name user --attributes name:string,email:string,password:string,gender:string,phone:integer,address:text,image:string,role:string
+
+COUNTRIES
+npx sequelize model:generate --name country --attributes name:string
+
+IMAGE
+npx sequelize model:generate --name image --attributes name:string
+
+TRIP
+npx sequelize model:generate --name trip --attributes title:string,accomodation:string,transportation:string,eat:string,day:integer,night:integer,dateTrip:date,price:integer,quota:integer,counterQuota:integer,description:text,countryId:integer,imageId:integer
+
+Association
+trip.belongsTo(models.transaction, {
+        as: 'transaction',
+        foreignKey: 'tripId'
+      })
+
+      trip.hasOne(models.country, {
+        as: 'country',
+        foreignKey: 'countryId'
+      })
+
+      trip.hasMany(models.image, {
+        as: 'images',
+        foreignKey: 'imageId'
+      })
+
+countryId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'countries',
+          key: 'id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
+      },
+      imageId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'images',
+          key: 'id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
+      }
+
+
+TRANSACTION
+npx sequelize model:generate --name transaction --attributes counterQty:integer,total:integer,status:string,attachment:string,tripId:integer,userId:integer
+
+Associate
+transaction.belongsTo(models.user, {
+        as: 'user',
+        foreignKey: 'userId'
+      })
+
+      transaction.hasMany(models.trip, {
+        as: 'trips',
+        foreignKey: 'tripId'
+      })
+
+tripId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'trips',
+          key: 'id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
+      },
+      userId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'users',
+          key: 'id'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
+      }
+
+TOKEN
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibmFtZSI6Ik1hcmt1cCIsImlhdCI6MTY3NzM0Mzg0MX0.UWn6XVtUe0zyPWTBXA6nmIUlLWSbUERQUfTJQXsstw8
