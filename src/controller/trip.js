@@ -1,19 +1,27 @@
-const { trip, image, country } = require('../models')
+const { trip, country } = require('../models')
 
 const createTrip = async (req, res) => {
   try {
     const dataTrip = req.body
-    const newTrip = await trip.create(dataTrip, {
-      include: [
-        {
-          model: image,
-          as: 'images'
-        },
-        {
-          model: country,
-          as: 'countries'
-        }
-      ]
+    const images = req.files
+    const arrImages = images?.map(image => {
+      const objMnplt = {
+        image: process.env.PATH_FILE + image.filename
+      }
+      return objMnplt
+    })
+    const stringObj = JSON.stringify(arrImages)
+
+    const dataContainer = {
+      ...dataTrip,
+      image: stringObj
+    }
+
+    const newTrip = await trip.create(dataContainer, {
+      include: {
+        model: country,
+        as: 'country'
+      }
     })
 
     res.send({

@@ -15,11 +15,6 @@ module.exports = (sequelize, DataTypes) => {
         as: 'country',
         foreignKey: 'countryId'
       })
-
-      trip.belongsTo(models.image, {
-        as: 'image',
-        foreignKey: 'imageId'
-      })
     }
   }
   trip.init({
@@ -34,8 +29,8 @@ module.exports = (sequelize, DataTypes) => {
     quota: DataTypes.INTEGER,
     counterQuota: DataTypes.INTEGER,
     description: DataTypes.TEXT,
-    countryId: DataTypes.INTEGER,
-    imageId: DataTypes.INTEGER
+    images: DataTypes.TEXT,
+    countryId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'trip',

@@ -42,19 +42,13 @@ module.exports = {
       description: {
         type: Sequelize.TEXT
       },
+      images: {
+        type: Sequelize.TEXT,
+      },
       countryId: {
         type: Sequelize.INTEGER,
         references: {
           model: 'countries',
-          key: 'id'
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE'
-      },
-      imageId: {
-        type: Sequelize.INTEGER,
-        references: {
-          model: 'images',
           key: 'id'
         },
         onUpdate: 'CASCADE',

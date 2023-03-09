@@ -1,4 +1,5 @@
 const { user, transaction } = require('../models')
+const cloudinary = require('../middleware/cloudinary')
 
 const getAllUser = async (_, res) => {
   try {
@@ -71,14 +72,14 @@ const getUserByUUID = async (req, res) => {
 const updateUserByUUID = async (req, res) => {
   try {
     const { uuid } = req.params
-
-    const oldUser = req.body
-    const image = req.file?.filename
-    console.log(image)
+    const filePath = req.file.path
+    
+    // Upload to cloudinary
+    const upload = await cloudinary.uploader.upload(filePath)
 
     const newData = {
       ...oldUser,
-      image: image ? process.env.PATH_FILE + image : null
+      image: upload ? upload.secure_url : null // Get file url from cloudinary
     }
 
     await user.update(newData, {
