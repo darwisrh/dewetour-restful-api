@@ -8,12 +8,12 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       trip.belongsTo(models.transaction, {
         as: 'transaction',
-        foreignKey: 'tripId'
+        foreignKey: 'trip_id'
       })
 
       trip.belongsTo(models.country, {
         as: 'country',
-        foreignKey: 'countryId'
+        foreignKey: 'country_id'
       })
     }
   }
@@ -24,13 +24,13 @@ module.exports = (sequelize, DataTypes) => {
     eat: DataTypes.STRING,
     day: DataTypes.INTEGER,
     night: DataTypes.INTEGER,
-    dateTrip: DataTypes.DATE,
+    date_trip: DataTypes.DATE,
     price: DataTypes.INTEGER,
     quota: DataTypes.INTEGER,
-    counterQuota: DataTypes.INTEGER,
+    counter_quota: DataTypes.INTEGER,
     description: DataTypes.TEXT,
     images: DataTypes.TEXT,
-    countryId: DataTypes.INTEGER
+    country_id: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'trip',
