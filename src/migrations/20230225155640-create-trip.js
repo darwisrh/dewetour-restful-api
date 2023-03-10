@@ -27,7 +27,7 @@ module.exports = {
       night: {
         type: Sequelize.INTEGER
       },
-      dateTrip: {
+      date_trip: {
         type: Sequelize.DATE
       },
       price: {
@@ -36,7 +36,7 @@ module.exports = {
       quota: {
         type: Sequelize.INTEGER
       },
-      counterQuota: {
+      counter_quota: {
         type: Sequelize.INTEGER
       },
       description: {
@@ -45,7 +45,7 @@ module.exports = {
       images: {
         type: Sequelize.TEXT,
       },
-      countryId: {
+      country_id: {
         type: Sequelize.INTEGER,
         references: {
           model: 'countries',

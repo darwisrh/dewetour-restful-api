@@ -9,7 +9,7 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      counterQty: {
+      counter_qty: {
         type: Sequelize.INTEGER
       },
       total: {
@@ -21,7 +21,7 @@ module.exports = {
       attachment: {
         type: Sequelize.STRING
       },
-      tripId: {
+      trip_id: {
         type: Sequelize.INTEGER,
         references: {
           model: 'trips',
@@ -30,7 +30,7 @@ module.exports = {
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE'
       },
-      userId: {
+      user_id: {
         type: Sequelize.INTEGER,
         references: {
           model: 'users',

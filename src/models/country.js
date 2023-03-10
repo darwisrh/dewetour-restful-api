@@ -8,7 +8,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       country.hasMany(models.trip, {
         as: 'trips',
-        foreignKey: 'countryId'
+        foreignKey: 'country_id'
       })
     }
   }
